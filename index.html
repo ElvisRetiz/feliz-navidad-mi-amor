@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>¡Feliz navidad mi amor!</title>
+</head>
+<body>
+  <div id="welcome" class="introduction">
+    <img id="snoopy-img" class="snoopy" src="./assets/snoopy1.png"/>
+    <button class="ind-btn" id="ind">Siguiente</button>
+  </div>
+  <div id="app" class="application shutdown">
+    <div class="scroller">
+      <div class="text" id="texter">
+        Hm, hm, hm. Aqui va<br>
+        espero te guste, de verdad<br>
+        escribo con toda sinceridad<br>
+        Elvis te ama con intensidad<br>
+        y aunque sea virtual<br>
+        su corazon te logro mandar<br>
+        ¿lo hice bien? ¡Excelente!<br>
+        Gracias.
+      </div>
+      <img id="personaje" class="badge" src="./assets/1.png"/>
+      <button class="ind-btn" id="char">Siguiente</button>
+    </div>
+  </div>
+</body>
+<script>
+  let counter = 1;
+  let charCounter = 1;
+  let urlImage = "";
+  const poemas = [
+    ``,
+    `
+    Hm, hm, hm. Aqui va<br>
+    espero te guste, de verdad<br>
+    escribo con toda sinceridad<br>
+    Elvis te ama con intensidad<br>
+    y aunque sea virtual<br>
+    su corazon te logro mandar<br>
+    ¿lo hice bien? ¡Excelente!<br>
+    Gracias.
+    `,
+    `
+    Elvis te ama<br>
+    como yo amo mi manta.<br>
+    Su amor es suave y calido,<br> 
+    como mi manta<br>
+    Y esta para ti siempre,<br>
+    como mi manta<br>
+    Vaya,<br>
+    Elvis podria remplazar a<br> 
+    mi manta<br>
+    Pero Elvis es tuyo<br>
+    y no puedo quitartelo<br>
+    Sin mi manta me muero<br>
+    y ELvis sin ti tambien<br>
+    Bueno, ese fue un mal poema,<br>
+    lo siento.
+    `,
+    `
+    Voya ser clara y directa<br>
+    para Elvis tu eres perfecta<br>
+    y siendo muy, muy sincera<br>
+    Tu podrias tener a cualquiera<br>
+    Elvis lo sabe y se esmera<br>
+    porque para el tu eres la primera<br>
+    ¿Muy bueno no? Lo se,<br>
+    somos las mejores
+    `,
+    `
+    Esta claro que Elvis<br>
+    esta loco por ti<br>
+    Puede contemplarte<br>
+    por horas<br>
+    como un astrofisico<br>
+    a las estrellas<br>
+    la poesia no es lo mio<br>
+    yo opto mas<br>
+    por lo cientifico<br>
+    pero si el amor<br> 
+    tuviera un espacio<br>
+    DIANA fuera la capital<br>
+    de Elvis en un plano geografico
+    `,
+    `
+    Yo no te escribi un poema<br>
+    te escribi una cancion<br>
+    ♪oh Diana, oh Diana♪<br>
+    ♪brillas en mi, como la mañana♪<br>
+    ♪oh Diana, oh Diana♪<br>
+    ♪me haces feliz, como campana♪<br>
+    ♪tan, tan, tan, tan feliiiiiz♪<br>
+    De Elvis para ti
+    `,
+    `
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>
+    ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡<br>`
+  ]
+
+  const indBtn = document.getElementById('ind');
+  const MsgBtn = document.getElementById('char');
+  const texto = document.getElementById('texter');
+  const personaje = document.getElementById('personaje');
+  const image = document.getElementById('snoopy-img');
+  const welcome = document.getElementById('welcome');
+  const app = document.getElementById('app');
+
+  function BtnHandler() {
+    counter+=1
+    if (counter > 8) {
+      welcome.classList.add('shutdown')
+      app.classList.remove('shutdown')
+      return
+    }
+    urlImage = `./assets/snoopy${counter}.png`
+    image.setAttribute("src", urlImage);
+  };
+
+  function MsgHandler() {
+    if(charCounter >= 6){
+      charCounter=1
+    }else {
+      charCounter+=1
+    }
+    texto.innerHTML = poemas[charCounter]
+    personaje.setAttribute("src",`./assets/${charCounter}.png`)
+  }
+
+  indBtn.addEventListener('click', BtnHandler);
+  MsgBtn.addEventListener('click', MsgHandler);
+</script>
+</html>
